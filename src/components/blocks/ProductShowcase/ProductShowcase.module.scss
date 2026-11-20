@@ -1,0 +1,55 @@
+@use 'abstracts' as *;
+
+.section {
+  padding-block: var(--section-gap);
+}
+
+.heading {
+  @include section-heading;
+
+  margin-bottom: var(--space-6);
+
+  @include up('md') {
+    margin-bottom: var(--space-8);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8) var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include up('md') {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-8) var(--space-4);
+  }
+
+  @include up('xl') {
+    column-gap: 2.75rem;
+  }
+}
+
+// Announces "Showing 8 of 12 products" after each reveal without taking up space.
+.status {
+  @include visually-hidden;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+
+  @include up('md') {
+    margin-top: var(--space-12);
+  }
+}
+
+.more {
+  @include button-solid;
+
+  min-width: 11rem;
+  padding-block: var(--space-4);
+}

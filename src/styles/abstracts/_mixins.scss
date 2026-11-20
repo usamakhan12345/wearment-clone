@@ -1,0 +1,113 @@
+/// Hides content visually while keeping it available to assistive tech.
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/// Consistent keyboard focus indicator.
+@mixin focus-ring {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/// Strips native button chrome so a <button> can be styled from scratch.
+@mixin button-reset {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+
+/// Centered light display heading used at the top of homepage sections.
+@mixin section-heading {
+  font-family: var(--font-heading);
+  font-size: var(--text-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-tight);
+  text-align: center;
+}
+
+/// Dark, square-cornered call-to-action button.
+@mixin button-solid {
+  @include button-reset;
+
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+/// Square-cornered button with a thin dark outline.
+@mixin button-outline {
+  @include button-reset;
+
+  display: inline-block;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-text);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+/// Round, translucent white arrow button used to step through carousels.
+@mixin carousel-arrow {
+  @include button-reset;
+
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 80%);
+  color: var(--color-text);
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+
+  &:hover {
+    background: var(--color-bg);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+}

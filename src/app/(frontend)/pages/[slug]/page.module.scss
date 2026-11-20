@@ -1,0 +1,22 @@
+@use 'abstracts' as *;
+
+.main {
+  // Narrow reading column: Container reads this token for its max-width.
+  --container-max: 48rem;
+
+  padding-block: var(--space-8);
+
+  @include up('md') {
+    padding-block: var(--space-16);
+  }
+}
+
+.title {
+  margin-bottom: var(--space-6);
+  font-family: var(--font-heading);
+  font-weight: 400;
+}
+
+.empty {
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,4 @@
+// Sass-only helpers (no CSS output). Consume with: @use 'abstracts' as *;
+// Design tokens live in base/_root.scss as CSS custom properties so they can be themed at runtime.
+@forward 'breakpoints';
+@forward 'mixins';

@@ -1,0 +1,43 @@
+@use 'abstracts' as *;
+
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-16);
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 400;
+}
+
+.text {
+  max-width: 32rem;
+  color: var(--color-text-muted);
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  margin-top: var(--space-2);
+  padding-inline: var(--space-8);
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}

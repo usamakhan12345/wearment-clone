@@ -1,0 +1,206 @@
+@use 'abstracts' as *;
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-8);
+  margin-bottom: var(--space-8);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+
+  &[aria-busy='true'] {
+    opacity: 0.7;
+  }
+}
+
+.label {
+  color: var(--color-text-muted);
+}
+
+// ---- Filters (left) ----------------------------------------------------------------------
+
+.filters {
+  // Anchors the dropdown panels on small screens, where they span the whole row.
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-6);
+}
+
+.dropdown {
+  // Static on mobile so the panel can span the whole `.filters` row.
+  position: static;
+
+  @include up('md') {
+    position: relative;
+  }
+}
+
+.summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  list-style: none;
+
+  // Safari still renders its own disclosure marker unless this one is hidden.
+  // stylelint-disable-next-line selector-no-vendor-prefix
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:hover {
+    color: var(--color-text);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  details[open] > & {
+    color: var(--color-text);
+  }
+
+  details[open] > & .chevron {
+    transform: rotate(180deg);
+  }
+}
+
+.chevron {
+  flex: none;
+  transition: transform 0.15s ease;
+}
+
+.panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 10%);
+
+  @include up('md') {
+    right: auto;
+    min-width: 16rem;
+  }
+}
+
+.panelLegend {
+  @include visually-hidden;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 2.25rem;
+  color: var(--color-text);
+  cursor: pointer;
+
+  input {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--color-text);
+  }
+}
+
+.priceRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.priceField {
+  display: grid;
+  gap: var(--space-1);
+
+  input {
+    width: 100%;
+    min-height: 2.5rem;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+}
+
+.apply {
+  min-height: 2.5rem;
+  border: 1px solid var(--color-text);
+  background: var(--color-text);
+  color: var(--color-bg);
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.clear {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+// ---- Sorting and count (right) -----------------------------------------------------------
+
+.sorting {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-6);
+  margin-left: auto;
+}
+
+.selectWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  .chevron {
+    position: absolute;
+    right: var(--space-2);
+    pointer-events: none;
+  }
+}
+
+.select {
+  min-height: 2.75rem;
+  padding: 0 var(--space-6) 0 var(--space-2);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  appearance: none;
+
+  &:hover {
+    color: var(--color-text);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.count {
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,57 @@
+@use 'abstracts' as *;
+
+$tile-gap: 0.5rem;
+
+.section {
+  width: min(100% - 2 * var(--container-gutter), 71.875rem); // 1150px, centred
+  margin-inline: auto;
+  padding-block: var(--section-gap);
+}
+
+// Phones: one stack, restored to the authored order by each tile's inline `order`.
+// The column wrappers dissolve so every tile becomes a direct flex item of the grid.
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: $tile-gap;
+
+  @include up('sm') {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+.column {
+  display: contents;
+
+  @include up('sm') {
+    display: flex;
+    flex-direction: column;
+    gap: $tile-gap;
+  }
+}
+
+.tile {
+  display: block;
+  background: var(--color-surface);
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.placeholder {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+}
+
+.cover {
+  object-fit: cover;
+}

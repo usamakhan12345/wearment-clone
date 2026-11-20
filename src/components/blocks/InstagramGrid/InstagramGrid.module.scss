@@ -1,0 +1,61 @@
+@use 'abstracts' as *;
+
+.section {
+  padding-block: var(--section-gap);
+}
+
+.heading {
+  @include section-heading;
+
+  margin-bottom: var(--space-6);
+  padding-inline: var(--container-gutter);
+
+  @include up('md') {
+    margin-bottom: var(--space-8);
+  }
+}
+
+// Nearly edge to edge with a hairline gap, as on the original. 3 columns on phones, 7 on desktop.
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+  list-style: none;
+
+  @include up('lg') {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    padding-inline: var(--space-4);
+  }
+}
+
+// Posts on the original are portrait (4:5); `cover` crops anything else to match.
+.cell {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--color-surface);
+}
+
+.link {
+  position: absolute;
+  inset: 0;
+  display: block;
+
+  &:focus-visible {
+    @include focus-ring;
+
+    outline-offset: -4px;
+  }
+}
+
+.image {
+  object-fit: cover;
+  transition: opacity 0.2s ease;
+
+  .link:hover & {
+    opacity: 0.85;
+  }
+}

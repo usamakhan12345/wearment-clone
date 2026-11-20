@@ -1,0 +1,15 @@
+// Sticky-footer layout: the content area absorbs spare height so the footer sits at the bottom of
+// short pages (empty states, 404).
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+
+  // Only focused programmatically (skip link); it is not an interactive control.
+  &:focus {
+    outline: none;
+  }
+}

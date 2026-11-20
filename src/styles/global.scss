@@ -1,0 +1,5 @@
+// Entry point for site-wide styles; imported once from the (frontend) root layout.
+// Component styles live next to their component as *.module.scss.
+@use 'base/root';
+@use 'base/reset';
+@use 'base/typography';

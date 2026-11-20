@@ -1,0 +1,110 @@
+@use 'abstracts' as *;
+
+$gap: var(--space-3);
+
+.section {
+  padding-block: var(--section-gap);
+}
+
+.heading {
+  @include section-heading;
+}
+
+.subheading {
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-6);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+
+  @include up('md') {
+    margin-bottom: var(--space-8);
+  }
+}
+
+.carousel {
+  position: relative;
+
+  // Wide screens leave a gutter on each side for the arrows instead of overlaying the products.
+  @include up('lg') {
+    padding-inline: var(--space-12);
+  }
+}
+
+.track {
+  display: flex;
+  gap: $gap;
+  margin: 0;
+  padding: var(--space-1) 0; // room for the focus ring, which overflow would otherwise clip
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include up('lg') {
+    gap: var(--space-8);
+  }
+}
+
+// Phones show about two products with a peek of the next; desktops show four.
+.item {
+  flex: 0 0 calc((100% - #{$gap}) / 2.2);
+  min-width: 0;
+  scroll-snap-align: start;
+
+  @include up('md') {
+    flex-basis: calc((100% - 2 * #{$gap}) / 3);
+  }
+
+  @include up('lg') {
+    flex-basis: calc((100% - 3 * var(--space-8)) / 4);
+  }
+}
+
+.arrow {
+  @include carousel-arrow;
+
+  position: absolute;
+  top: 40%;
+  z-index: 1;
+  translate: 0 -50%;
+  width: 2rem;
+  height: 2rem;
+
+  &[aria-disabled='true'] {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  @include up('lg') {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: transparent;
+  }
+}
+
+.arrowPrev {
+  left: var(--space-1);
+
+  @include up('lg') {
+    left: 0;
+  }
+}
+
+.arrowNext {
+  right: var(--space-1);
+
+  @include up('lg') {
+    right: 0;
+  }
+}
+
+.arrowIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}

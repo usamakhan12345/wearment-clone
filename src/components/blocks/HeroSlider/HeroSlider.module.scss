@@ -1,0 +1,118 @@
+@use 'abstracts' as *;
+
+.hero {
+  position: relative;
+  width: 100%;
+  background: var(--color-surface);
+}
+
+// A scroll-snapping row: native swipe and keyboard scrolling work without extra code.
+.track {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.slideLink {
+  position: absolute;
+  inset: 0;
+  display: block;
+
+  &:focus-visible {
+    @include focus-ring;
+
+    outline-offset: -4px;
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.arrow {
+  @include carousel-arrow;
+
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  width: 2rem;
+  height: 2rem;
+
+  @include up('md') {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.arrowPrev {
+  left: var(--space-2);
+
+  @include up('md') {
+    left: var(--space-4);
+  }
+}
+
+.arrowNext {
+  right: var(--space-2);
+
+  @include up('md') {
+    right: var(--space-4);
+  }
+}
+
+.arrowIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.dots {
+  position: absolute;
+  bottom: var(--space-2);
+  left: 50%;
+  display: flex;
+  translate: -50% 0;
+
+  @include up('md') {
+    bottom: var(--space-4);
+  }
+}
+
+// The button is a 24px tap target; the visible dot is drawn by the pseudo-element.
+.dot {
+  @include button-reset;
+
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  &::after {
+    content: '';
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 75%);
+    transition: background-color 0.2s ease;
+  }
+
+  &[aria-current='true']::after {
+    background: var(--color-text);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}

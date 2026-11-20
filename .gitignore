@@ -1,0 +1,37 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# production
+/build
+
+# testing
+/coverage
+
+# local env files (never commit real secrets; see .env.example)
+.env
+.env*.local
+
+# uploads served by Payload's local storage
+/media
+
+# misc
+.DS_Store
+*.pem
+*.tsbuildinfo
+npm-debug.log*
+.idea/*
+!/.idea/runConfigurations
+.vercel
+
+# local MongoDB data (when running mongod directly instead of Docker)
+/.data
+
+# importer download cache
+/.import-cache

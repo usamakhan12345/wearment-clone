@@ -1,0 +1,19 @@
+@use 'abstracts' as *;
+
+.page {
+  // The product page is wider than the default container; every Container below reads this.
+  --container-max: 75rem;
+}
+
+.top {
+  display: grid;
+  gap: var(--space-6);
+  padding-block: var(--space-4) var(--space-8);
+
+  @include up('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--space-8);
+    padding-block: var(--space-4) var(--space-12);
+  }
+}

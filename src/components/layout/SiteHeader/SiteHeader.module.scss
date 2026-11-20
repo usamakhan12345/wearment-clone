@@ -1,0 +1,77 @@
+@use 'abstracts' as *;
+
+.header {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+// Three columns keep the logo centred no matter how many icons sit on either side.
+.inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 4rem;
+  padding-inline: var(--space-2);
+
+  @include up('md') {
+    min-height: 5.4375rem; // 87px, as on the original
+    padding-inline: var(--space-6);
+  }
+}
+
+.side {
+  display: flex;
+  align-items: center;
+}
+
+.sideEnd {
+  justify-content: flex-end;
+}
+
+.brand {
+  display: block;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.logo {
+  width: auto;
+  height: 1.5rem;
+
+  @include up('md') {
+    height: 2rem;
+  }
+}
+
+.iconControl {
+  @include button-reset;
+
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--color-text);
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.unavailable {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

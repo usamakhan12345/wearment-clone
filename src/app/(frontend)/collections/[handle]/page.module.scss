@@ -1,0 +1,30 @@
+@use 'abstracts' as *;
+
+.main {
+  padding-block: var(--space-8) var(--space-16);
+
+  @include up('md') {
+    padding-block: var(--space-12) var(--space-16);
+  }
+}
+
+.title {
+  margin-bottom: var(--space-6);
+  font-family: var(--font-heading);
+  font-weight: 400;
+  text-align: left;
+
+  @include up('md') {
+    margin-bottom: var(--space-8);
+  }
+}
+
+.description {
+  max-width: 48rem;
+  margin: calc(var(--space-2) * -1) 0 var(--space-6);
+  color: var(--color-text-muted);
+
+  @include up('md') {
+    margin-bottom: var(--space-8);
+  }
+}
