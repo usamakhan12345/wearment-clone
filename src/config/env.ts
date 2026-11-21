@@ -3,12 +3,18 @@ export type Env = {
   databaseUrl: string
   /** Secret Payload uses to sign auth tokens. */
   payloadSecret: string
+  /** Public origin of the site (no trailing slash); used for absolute URLs in metadata. */
+  siteUrl: string
 }
+
+type RequiredKey = 'databaseUrl' | 'payloadSecret'
 
 const REQUIRED_VARS = {
   databaseUrl: 'MONGODB_URI',
   payloadSecret: 'PAYLOAD_SECRET',
-} as const satisfies Record<keyof Env, string>
+} as const satisfies Record<RequiredKey, string>
+
+const DEFAULT_SITE_URL = 'http://localhost:3000'
 
 type EnvSource = Record<string, string | undefined>
 
@@ -20,7 +26,7 @@ type EnvSource = Record<string, string | undefined>
  * and trivially testable.
  */
 export function parseEnv(source: EnvSource): Env {
-  const entries = Object.entries(REQUIRED_VARS) as [keyof Env, string][]
+  const entries = Object.entries(REQUIRED_VARS) as [RequiredKey, string][]
 
   const missing = entries.filter(([, name]) => !source[name]?.trim()).map(([, name]) => name)
   if (missing.length > 0) {
@@ -30,5 +36,12 @@ export function parseEnv(source: EnvSource): Env {
     )
   }
 
-  return Object.fromEntries(entries.map(([key, name]) => [key, source[name]!.trim()])) as Env
+  const required = Object.fromEntries(
+    entries.map(([key, name]) => [key, source[name]!.trim()]),
+  ) as Record<RequiredKey, string>
+
+  return {
+    ...required,
+    siteUrl: (source.SITE_URL?.trim() || DEFAULT_SITE_URL).replace(/\/+$/, ''),
+  }
 }

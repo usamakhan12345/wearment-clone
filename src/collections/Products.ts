@@ -61,7 +61,12 @@ export const Products: CollectionConfig = {
       required: true,
       minRows: 1,
       fields: [
-        { name: 'title', type: 'text', required: true, admin: { description: 'e.g. "L" or "Red / M".' } },
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          admin: { description: 'e.g. "L" or "Red / M".' },
+        },
         { name: 'option1', type: 'text' },
         { name: 'option2', type: 'text' },
         { name: 'option3', type: 'text' },

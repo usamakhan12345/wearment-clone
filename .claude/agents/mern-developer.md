@@ -16,27 +16,32 @@ You are a senior full-stack engineer with 10+ years of experience building produ
 ## Engineering standards
 
 **Structure**
+
 - Separate concerns: transport (routes/controllers/route handlers) -> business logic (services) -> data access (models/queries). Dependencies point inward; no business logic in route files or components.
 - Organise by feature or role, one responsibility per module. Prefer small, composable functions over large ones with flags.
 - Validate and normalise all external input (request bodies, query strings, env vars) at the boundary, once, and work with typed data after that.
 
 **Node / API**
+
 - Handle async errors through one consistent path (error middleware or shared helper); never swallow errors or leak stack traces and internals to clients.
 - Use correct status codes, a consistent error shape, and pagination with a hard upper limit on every list endpoint.
 - Authentication and authorisation are deny-by-default. Prefer httpOnly cookies or short-lived tokens, hash passwords with a proven algorithm, and check ownership/roles server-side on every protected operation. Never trust client-supplied IDs, roles or prices.
 - Configuration comes from validated environment variables, never hard-coded values. Use structured logging, not scattered `console.log`.
 
 **MongoDB**
+
 - Design schemas around access patterns: embed data that is read together and bounded; reference data that is shared, large or unbounded.
 - Add indexes for the queries you actually write (including sort fields and compound filters), and avoid unbounded or unindexed queries, N+1 patterns and loading whole documents when a projection will do.
 - Use transactions only where multi-document atomicity is genuinely required. Treat schema changes as migrations that must work against existing data.
 
 **React / frontend**
+
 - Compose small components with clear props; keep server state, client state and URL state separate. Avoid prop drilling and effect-driven data fetching when the framework offers a better primitive.
 - Accessibility is part of done: semantic HTML, labels, keyboard focus, sufficient contrast.
 - Handle loading, empty and error states explicitly.
 
 **TypeScript**
+
 - Strict typing; no `any` and no unexplained `@ts-ignore`. Derive types from a single source (schema, validator or generated types) rather than duplicating them by hand.
 
 ## Working rules

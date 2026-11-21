@@ -44,7 +44,7 @@ function TileLink({ tile, order }: { tile: Tile; order: number }) {
 /** Two-column mosaic of large, clickable collection images shown at their natural proportions. */
 export function CollectionTiles({ block }: { block: CollectionTilesBlock }) {
   const tiles = (block.tiles ?? []).flatMap<Tile>((tile, index) => {
-    const image = toImageData(tile.image, 'large')
+    const image = toImageData(tile.image, 'original')
 
     return image && tile.link ? [{ id: tile.id ?? String(index), image, href: tile.link }] : []
   })

@@ -41,11 +41,11 @@ export type ProductCardData = {
 /** Picks a rendition from an uploaded media doc. Returns `null` for unpopulated relationships. */
 export function toImageData(
   media: Media | string | null | undefined,
-  size: 'card' | 'large' | 'original' = 'large',
+  size: 'card' | 'original' = 'original',
 ): ImageData | null {
   if (!media || typeof media === 'string' || !media.url) return null
 
-  const rendition = size === 'original' ? null : media.sizes?.[size]
+  const rendition = size === 'card' ? media.sizes?.card : null
   const source = rendition?.url ? rendition : media
 
   return {

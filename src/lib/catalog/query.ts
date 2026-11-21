@@ -18,7 +18,8 @@ export type SortValue = (typeof SORT_OPTIONS)[number]['value']
 export type Availability = 'in' | 'out'
 
 export const DEFAULT_SORT: SortValue = 'created-descending'
-export const PAGE_SIZE = 24
+/** Large enough that a typical collection (the live store's Linen has 27) fits on one page. */
+export const PAGE_SIZE = 50
 
 const MAX_PAGE = 10_000
 const MAX_PRICE = 10_000_000

@@ -6,6 +6,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter/SiteFooter'
 import { SiteHeader } from '@/components/layout/SiteHeader/SiteHeader'
 import { CONTENT_ID, SkipLink } from '@/components/layout/SkipLink/SkipLink'
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton/WhatsAppButton'
+import { parseEnv } from '@/config/env'
 import { siteConfig } from '@/config/site'
 import { getSiteSettings } from '@/services/globals'
 import { fontVariables } from '@/styles/fonts'
@@ -19,6 +20,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = settings.tagline?.trim() || siteConfig.description
 
   return {
+    // Resolves relative Open Graph / canonical URLs. Set SITE_URL in production.
+    metadataBase: new URL(parseEnv(process.env).siteUrl),
     title: { default: siteName, template: `%s | ${siteName}` },
     description,
   }

@@ -9,7 +9,7 @@ const DEFAULT_AUTOPLAY_SECONDS = 5
 export function HeroSlider({ block }: { block: HeroSliderBlock }) {
   const slides = (block.slides ?? []).flatMap<HeroSlide>((slide, index) => {
     // The original upload: next/image resizes it per device, and a full-bleed banner benefits from
-    // more pixels than the 1280px "large" rendition.
+    // more pixels than the small `card` rendition.
     const image = toImageData(slide.image, 'original')
 
     return image ? [{ id: slide.id ?? String(index), image, href: slide.link ?? null }] : []

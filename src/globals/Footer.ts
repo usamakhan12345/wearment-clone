@@ -19,10 +19,7 @@ export const Footer: GlobalConfig = {
     {
       name: 'columns',
       type: 'array',
-      fields: [
-        { name: 'title', type: 'text', required: true },
-        navLinksField('links'),
-      ],
+      fields: [{ name: 'title', type: 'text', required: true }, navLinksField('links')],
     },
     { name: 'logo', type: 'upload', relationTo: 'media' },
     { name: 'paymentImage', type: 'upload', relationTo: 'media' },

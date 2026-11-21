@@ -57,8 +57,8 @@ export async function SiteFooter() {
     return resolved?.external ? [{ key, label, Icon, href: resolved.href }] : []
   })
 
-  const logo = toImageData(footer.logo ?? settings.logo, 'large')
-  const payment = toImageData(footer.paymentImage, 'large')
+  const logo = toImageData(footer.logo ?? settings.logo, 'original')
+  const payment = toImageData(footer.paymentImage, 'original')
   const copyright = footer.copyright?.trim() || (siteName ? `© ${currentYear()} ${siteName}` : '')
 
   const hasIntro = showNewsletter || socials.length > 0

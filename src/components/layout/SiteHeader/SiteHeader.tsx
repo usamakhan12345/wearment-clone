@@ -23,7 +23,7 @@ export async function SiteHeader() {
   const [header, settings] = await Promise.all([getHeader(), getSiteSettings()])
 
   const siteName = settings.siteName?.trim() || 'Home'
-  const logo = toImageData(settings.logo, 'large')
+  const logo = toImageData(settings.logo, 'original')
 
   return (
     <header className={styles.header}>

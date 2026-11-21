@@ -10,7 +10,10 @@ type HandleFieldOptions = {
 }
 
 /** URL-safe unique identifier, generated from a sibling field when left empty. */
-export function handleField({ name = 'handle', from = 'title' }: HandleFieldOptions = {}): TextField {
+export function handleField({
+  name = 'handle',
+  from = 'title',
+}: HandleFieldOptions = {}): TextField {
   return {
     name,
     type: 'text',

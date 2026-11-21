@@ -71,7 +71,7 @@ function buildInfoPanels(product: Product, settings: ProductPageSetting): InfoPa
 
   // A panel counts as content when it has visible text or an image.
   const sources: PanelSource[] = (settings.infoPanels ?? []).flatMap((panel) => {
-    const image = toImageData(panel.image, 'large')
+    const image = toImageData(panel.image, 'original')
     const hasContent = hasLexicalContent(panel.content)
 
     return image || hasContent

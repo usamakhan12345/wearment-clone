@@ -53,7 +53,7 @@ export const getCollectionByHandle = cache(
       handle: category.handle,
       title: category.title,
       description: category.description?.trim() || null,
-      image: toImageData(category.image, 'large'),
+      image: toImageData(category.image, 'original'),
     }
   },
 )

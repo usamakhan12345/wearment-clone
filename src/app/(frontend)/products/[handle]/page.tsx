@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!product) return { title: 'Product not found' }
 
   const description = getMetaDescription(product)
-  const image = toImageData(product.images?.[0], 'large')
+  const image = toImageData(product.images?.[0], 'original')
 
   return {
     title: product.title,
@@ -77,7 +77,7 @@ export default async function ProductPage({ params }: PageProps) {
   ])
 
   const galleryImages = (product.images ?? []).flatMap((media): GalleryImage[] => {
-    const main = toImageData(media, 'large')
+    const main = toImageData(media, 'original')
     const thumb = toImageData(media, 'card')
 
     return main && thumb ? [{ main, thumb }] : []

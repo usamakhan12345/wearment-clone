@@ -15,7 +15,7 @@ const requestTime = () => Date.now()
 /** Left: heading and live countdown. Right: grey panel with promo copy, a button and a slider. */
 export function PromoCountdown({ block }: { block: PromoCountdownBlock }) {
   const slides = (block.slides ?? []).flatMap<PromoSlide>((slide, index) => {
-    const image = toImageData(slide.image, 'large')
+    const image = toImageData(slide.image, 'original')
 
     return image ? [{ id: slide.id ?? String(index), image, href: slide.link ?? null }] : []
   })

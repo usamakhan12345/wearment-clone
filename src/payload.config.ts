@@ -1,4 +1,5 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -16,6 +17,7 @@ import { Footer } from './globals/Footer'
 import { Header } from './globals/Header'
 import { ProductPageSettings } from './globals/ProductPageSettings'
 import { SiteSettings } from './globals/SiteSettings'
+import { gridfsAdapter } from './storage/gridfs'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const env = parseEnv(process.env)
@@ -37,5 +39,10 @@ export default buildConfig({
   db: mongooseAdapter({
     url: env.databaseUrl,
   }),
+  plugins: [
+    // Store uploaded files in MongoDB (GridFS) instead of on disk, so they exist on serverless
+    // hosts like Vercel. URLs stay /api/media/file/<filename>.
+    cloudStoragePlugin({ collections: { media: { adapter: gridfsAdapter } } }),
+  ],
   sharp,
 })

@@ -4,3 +4,6 @@ coverage
 package-lock.json
 src/payload-types.ts
 src/app/(payload)/admin/importMap.js
+media
+.import-cache
+.data
