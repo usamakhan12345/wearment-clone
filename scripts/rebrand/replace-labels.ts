@@ -21,7 +21,7 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
-import sharp from 'sharp'
+import sharp, { type OverlayOptions } from 'sharp'
 
 const CACHE = path.resolve('.import-cache/images')
 const OUT_DIR = path.resolve('brand-assets/amora/photos')
@@ -426,7 +426,7 @@ async function patchImage(file: string, dets: Detection[]) {
   // Erase all detections first, then draw, so a later erase never smears an earlier drawing.
   const patches = dets.map((det) => eraseOne(img, det))
 
-  const layers: sharp.OverlayOptions[] = []
+  const layers: OverlayOptions[] = []
   for (const patch of patches) {
     if (!patch.draw) continue
     const { color, s, t, height } = patch.draw
