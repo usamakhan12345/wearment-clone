@@ -12,8 +12,8 @@ describe('resolveHref', () => {
   })
 
   it('treats http(s), mailto and tel URLs as external links', () => {
-    expect(resolveHref('https://instagram.com/wearments')).toEqual({
-      href: 'https://instagram.com/wearments',
+    expect(resolveHref('https://instagram.com/amora')).toEqual({
+      href: 'https://instagram.com/amora',
       external: true,
     })
     expect(resolveHref('mailto:hello@example.com')?.external).toBe(true)

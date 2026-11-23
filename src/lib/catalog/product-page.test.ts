@@ -113,15 +113,15 @@ describe('serializeJsonLd', () => {
 
 describe('resolveOrigin / toAbsoluteUrl', () => {
   it('builds an origin from valid hosts', () => {
-    expect(resolveOrigin('wearments.com', 'https')).toBe('https://wearments.com')
+    expect(resolveOrigin('amora.example', 'https')).toBe('https://amora.example')
     expect(resolveOrigin('localhost:3000', 'http')).toBe('http://localhost:3000')
     expect(resolveOrigin('a.test, b.test', 'https, http')).toBe('https://a.test')
   })
 
   it('defaults the scheme by host when no protocol is forwarded', () => {
     expect(resolveOrigin('localhost:3000', null)).toBe('http://localhost:3000')
-    expect(resolveOrigin('wearments.com', null)).toBe('https://wearments.com')
-    expect(resolveOrigin('wearments.com', 'ftp')).toBe('https://wearments.com')
+    expect(resolveOrigin('amora.example', null)).toBe('https://amora.example')
+    expect(resolveOrigin('amora.example', 'ftp')).toBe('https://amora.example')
   })
 
   it('rejects malformed hosts', () => {

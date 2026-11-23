@@ -1,6 +1,6 @@
 # shemiproduct
 
-A Payload-driven rebuild of the wearments.com storefront: Next.js (App Router) frontend styled with SCSS, Payload CMS embedded in the same app, MongoDB as the database. All content (239 products, collections, pages, homepage sections, header/footer, ~880 images) is stored in Payload and was imported from the live store.
+The **AMORA** storefront, a Payload-driven rebuild of a Shopify store (originally wearments.com, renamed; see "Brand" in CLAUDE.md and `scripts/rebrand/`): Next.js (App Router) frontend styled with SCSS, Payload CMS embedded in the same app, MongoDB as the database. All content (239 products, collections, pages, homepage sections, header/footer, ~880 images) is stored in Payload and was imported from the live store.
 
 ## Stack
 

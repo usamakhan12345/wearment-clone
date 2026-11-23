@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A Payload-driven rebuild of the Shopify storefront wearments.com (the owner authorised the copy). Every piece of storefront content (products, collections, pages, homepage sections, header/footer, images) lives in Payload/MongoDB and was imported from the live site by `scripts/import-wearments`.
+A Payload-driven rebuild of the Shopify storefront wearments.com (the owner authorised the copy), now branded **AMORA** (see "Brand"). Every piece of storefront content (products, collections, pages, homepage sections, header/footer, images) lives in Payload/MongoDB and was imported from the live site by `scripts/import-wearments`.
 
 Stack: Next.js 16 (App Router, Turbopack) + React 19 + strict TypeScript, styled with **SCSS (not Tailwind)**, **Payload CMS 3 embedded in the same Next.js app**, **MongoDB**. Package manager is **npm**. All `payload` / `@payloadcms/*` packages are pinned to the exact same version and must be upgraded together.
 
@@ -47,6 +47,15 @@ Pulls the live store's public JSON (`/products.json`, `/collections.json`, colle
 - `payload run` exits when the script module finishes evaluating, so the entry point must use top-level `await`.
 - Homepage/footer/product-page content that is not in the public JSON is embedded in `scripts/import-wearments/site.ts` and `data/*.ts` (Instagram image URLs are signed and expire; only the cached files matter after the first run).
 - The importer creates media documents through Payload, so images go straight into GridFS (see "Media storage"); the download cache in `.import-cache/images` is also the source for `npm run media:migrate`.
+
+## Brand (AMORA)
+
+The store was renamed from Wearments to **AMORA**. The brand name is content, not code: nothing under `src/` hard-codes it; the site name comes from the `site-settings` global.
+
+- `scripts/rebrand/` holds the rename tooling: `scan.ts` (read-only: lists every remaining old-name hit in the DB and GridFS; `npm run rebrand:scan`), `backup.ts` (JSON export to the gitignored `.rebrand-backup/`), `apply.ts` (`npm run rebrand` is a dry run, `npm run rebrand:apply` writes; phases `text,globals,media`) and `render-assets.ts` (draws the AMORA logo and banners into `brand-assets/amora/` with sharp and Jost, `brand-assets/fonts`, SIL OFL).
+- **The importer still produces the old brand** (it faithfully clones wearments.com, whose origin URLs must keep that name). After any re-import run `npm run rebrand:apply`. It is idempotent, finds the imported logo/banners by their `wearments-*` filenames, and swaps them in place (same document ids, new `amora-*` filenames) so references need no re-linking.
+- `apply.ts` replaces only the capitalised name (`Wearments`, `WEARMENTS150` -> `AMORA150`). Lower-case occurrences are real email addresses, the `wearments.com` domain and social handles; they are left until the owner supplies the new ones. The Instagram/Facebook links were cleared for the same reason.
+- The product photos and the Instagram grid images still show the old name printed on garment hang tags, neck labels and shopping bags. They cannot be text-replaced; they need new photos.
 
 ## Not implemented (out of scope so far)
 

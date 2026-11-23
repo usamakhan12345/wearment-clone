@@ -19,6 +19,9 @@
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "import:wearments": "cross-env NODE_OPTIONS=--no-deprecation payload run scripts/import-wearments/index.ts",
     "media:migrate": "cross-env NODE_OPTIONS=--no-deprecation payload run scripts/media/migrate-to-gridfs.ts",
+    "rebrand": "cross-env NODE_OPTIONS=--no-deprecation payload run scripts/rebrand/apply.ts",
+    "rebrand:apply": "cross-env NODE_OPTIONS=--no-deprecation APPLY=1 payload run scripts/rebrand/apply.ts",
+    "rebrand:scan": "cross-env NODE_OPTIONS=--no-deprecation payload run scripts/rebrand/scan.ts",
     "db:up": "docker compose up -d mongo",
     "db:down": "docker compose down"
   },

@@ -35,3 +35,6 @@ npm-debug.log*
 
 # importer download cache
 /.import-cache
+
+# rebrand: database backup taken before the AMORA rename
+/.rebrand-backup
